@@ -22,7 +22,7 @@ class Graph:
         self.graph[u].append(v)
 
     # A function used by DFS
-    def DFSUtil(self, v, visited, search):
+    def DFSUtil(self, v, visited, search,counter=1):
 
         # Mark the current node as visited
         # and print it
@@ -37,8 +37,9 @@ class Graph:
         # Recur for all the vertices
         # adjacent to this vertex
         for neighbour in self.graph[v]:
+            counter+=1
             if neighbour not in visited:
-                self.DFSUtil(neighbour, visited, search)
+                self.DFSUtil(neighbour, visited, search,counter)
 
     # The function to do DFS traversal. It uses
     # recursive DFSUtil()
@@ -76,6 +77,6 @@ g = Graph(graph_elements)
 # g.addEdge(4, 0)
 
 print("Depth First")
-g.DFS(2)
+# g.DFS(2)
 print("")
-x=g.DFS(2, 5)
+x=g.DFS(2, 3)

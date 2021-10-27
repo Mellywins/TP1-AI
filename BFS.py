@@ -22,7 +22,7 @@ class Graph:
 
     # Function to print a BFS of graph
     def BFS(self, s, search=0):
-
+        counter=1
         # Mark all the vertices as not visited
         visited = [False] * (max(self.graph) + 1)
 
@@ -33,26 +33,33 @@ class Graph:
         # visited and enqueue it
         queue.append(s)
         visited[s] = True
-
+        for k in queue:
+            print(" ", k, end=" ")
         while queue:
 
             # Dequeue a vertex from
             # queue and print it
             s = queue.pop(0)
-            print(s, end=" ")
+            # print(s, end=" ")
 
             # exit if search item is found
-            if search and search == s:
-                exit()
 
             # Get all adjacent vertices of the
             # dequeued vertex s. If a adjacent
             # has not been visited, then mark it
             # visited and enqueue it
             for i in self.graph[s]:
+                counter+=1
+                # print('current node', i, counter)
                 if visited[i] == False:
+                    print(i, end=" ")
                     queue.append(i)
                     visited[i] = True
+                    if search and search == i:
+                        print("visited nodes ",counter)
+                        exit()
+        print()
+        print('visited  nodes: ', counter)
 
 
 # Driver code
@@ -80,8 +87,8 @@ g = Graph(graph_elements)
 # g.addEdge(4, 0)
 
 print("Breadth First")
-g.BFS(2)
+# g.BFS(2)
 print("")
-g.BFS(2, 5)
+g.BFS(2, 4)
 
 # This code is contributed by Neelam Yadav
